@@ -1,5 +1,5 @@
 module "route53_health_check" {
-  source = "../../"
+  source = "iops-team/route53-health-check/aws"
 
   health_checks = [
     {
@@ -25,5 +25,5 @@ module "route53_health_check" {
   subscription_endpoint = "you@example.com"
   tags = {
     "Terraform" = "true"
-  }  
+  }
 }

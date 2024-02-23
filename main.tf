@@ -15,7 +15,7 @@ resource "aws_sns_topic_subscription" "subscription" {
   endpoint_auto_confirms          = var.endpoint_auto_confirms
 }
 
-resource "aws_route53_health_check" "example" {
+resource "aws_route53_health_check" "this" {
   for_each = { for hc in var.health_checks : hc.fqdn != null ? hc.fqdn : hc.ip_address => hc }
 
   fqdn              = each.value.fqdn != null ? each.value.fqdn : ""
@@ -30,7 +30,7 @@ resource "aws_route53_health_check" "example" {
 
 
 resource "aws_cloudwatch_metric_alarm" "health_check_alarm" {
-  for_each = aws_route53_health_check.example
+  for_each = aws_route53_health_check.this
 
   alarm_name          = "${each.value.fqdn != "" ? each.value.fqdn : each.value.ip_address}-${each.value.port}-health-check-alarm"
   comparison_operator = var.comparison_operator

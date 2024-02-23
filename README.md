@@ -12,8 +12,8 @@ This Terraform module sets up health checks for specified domain names using AWS
 
 ```hcl
 module "route53_health_check" {
-  source = "your-source-path"
-
+  source  = "iops-team/route53-health-check/aws"
+  
   health_checks = [
     {
       ip_address        = "1.1.1.1"

@@ -6,7 +6,7 @@ variable "aws_region" {
 
 variable "health_checks" {
   description = "A list of health check configurations for each fqdn or ip_address."
-  type        = list(object({
+  type = list(object({
     fqdn              = optional(string)
     ip_address        = optional(string)
     port              = number
